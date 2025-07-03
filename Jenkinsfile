@@ -1,0 +1,35 @@
+pipeline {
+  agent any
+ 
+  environment {
+    DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+    IMAGE = 'iamwaseem9746/cloudshop-app'
+  }
+ 
+  stages {
+    stage('Checkout') {
+      steps {
+        git branch: 'main',
+            url: 'https://github.com/Waseem-Ansari/Cloudshop-devops-pipeline.git'
+      }
+    }
+ 
+    stage('Build Docker Image') {
+      steps {
+        script {
+            docker.build("${IMAGE}:${BUILD_NUMBER}")
+        }
+      }
+    }
+ 
+    stage('Push to DockerHub') {
+      steps {
+        script {
+          docker.withRegistry('', DOCKERHUB_CREDENTIALS) {
+            docker.image("${IMAGE}:${BUILD_NUMBER}").push()
+          }
+        }
+      }
+    }   
+  }
+}
