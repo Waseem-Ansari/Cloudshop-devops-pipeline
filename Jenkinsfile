@@ -25,7 +25,7 @@ pipeline {
     stage('Push to DockerHub') {
       steps {
         script {
-            docker.withRegistry('', DOCKERHUB_CREDENTIALS) {
+            docker.withRegistry('https://index.docker.io/v1/', DOCKERHUB_CREDENTIALS) {
                 docker.image("${IMAGE}:${BUILD_NUMBER}").push()
           }
         }
