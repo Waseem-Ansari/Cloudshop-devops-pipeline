@@ -36,7 +36,7 @@ pipeline {
         script {
           sh '''
               ssh -o StrictHostKeyChecking=no -i /tmp/jenkins.pem  ubuntu@13.222.252.193
-              'cd /home/ubuntu/myapp && helm upgrade --install cloudshop .\
+              ' helm upgrade --install cloudshop /home/ubuntu/myapp \
               --set image.repository=iamwaseem9746/cloudshop-app \
               --set image.tag='${BUILD_NUMBER}' \
               --insecure-skip-tls-verify \
