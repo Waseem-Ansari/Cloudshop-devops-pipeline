@@ -33,15 +33,14 @@ pipeline {
     }
     stage ('Deploy to kubernetes'){
       steps{
-        withKubeConfig([credentialsId:'K3s']) {
-          sh '''
-              helm upgrade --install cloudshop /home/ubuntu/myapp \
-              --set image.repository=iamwaseem9746/cloudshop-app \
-              --set image.tag='${BUILD_NUMBER}' \
-              --insecure-skip-tls-verify \
-              --debug
-              '''
-        }
+        sh '''
+            helm upgrade --install cloudshop ./myapp \
+            --set image.repository=iamwaseem9746/cloudshop-app \
+            --set image.tag='${BUILD_NUMBER}' \
+            --insecure-skip-tls-verify \
+            --debug
+            '''
+        
       }
     }   
   }
