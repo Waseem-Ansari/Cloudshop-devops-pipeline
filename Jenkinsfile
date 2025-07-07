@@ -32,7 +32,7 @@ pipeline {
       }
     }
     stage ('Deploy to kubernetes'){
-      step{
+      steps{
         script {
           sh '''
               ssh -o StrictHostKeyChecking=no -i /tmp/jenkins.pem  ubuntu@13.222.252.193
