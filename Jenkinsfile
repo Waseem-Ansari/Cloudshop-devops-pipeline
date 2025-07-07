@@ -36,8 +36,6 @@ pipeline {
         sh '''
             helm upgrade --install cloudshop ./myapp \
             --kubeconfig /var/lib/jenkins/k3s.yaml \
-            --set image.repository=iamwaseem9746/cloudshop-app \
-            --set image.tag='${BUILD_NUMBER}' \
             --insecure-skip-tls-verify \
             --debug
             '''
