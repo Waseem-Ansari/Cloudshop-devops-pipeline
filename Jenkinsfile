@@ -39,7 +39,8 @@ pipeline {
               'cd ~/myapp && helm upgrade --install cloudshop .\
               --set image.repository=iamwaseem9746/cloudshop-app \
               --set image.tag='${BUILD_NUMBER}' \
-              --insecure-skip-tls-verify \ --debug'
+              --insecure-skip-tls-verify \
+              --debug'
               '''
         }
       }
